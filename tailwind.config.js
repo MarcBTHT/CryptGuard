@@ -13,6 +13,9 @@ module.exports = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      colors: {
+        customPurple: 'rgba(82, 55, 149, 1)',
+      },
     },
   },
   darkMode: "class",

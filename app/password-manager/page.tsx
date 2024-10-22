@@ -62,7 +62,28 @@ export default function PasswordManager() {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">Password Manager</h2>
+      {/* Dégradé en bas à gauche */}
+      <div
+        className="absolute top-1/2 left-20 transform -translate-y-1/2 z-0"
+        style={{
+          background: 'linear-gradient(to top right, rgba(121,35,171,1) 0%, rgba(82,55,149,1) 75%)',
+          filter: 'blur(350px)',
+          width: '350px',
+          height: '350px',
+        }}
+      />
+
+      {/* Dégradé en bas à droite */}
+      <div
+        className="absolute bottom-0 right-0 z-0"
+        style={{
+          background: 'linear-gradient(to top left, rgba(121,35,171,1) 0%, rgba(82,55,149,1) 75%)',
+          filter: 'blur(250px)',
+          width: '250px',
+          height: '250px',
+        }}
+      />
+      <h2 className="text-2xl font-bold mb-6 z-1">Password Manager</h2>
       <Card className="w-full">
         <CardBody className="mt-4" >
           <Input
@@ -121,7 +142,7 @@ export default function PasswordManager() {
                   }
                   color="warning"
                   size="md"
-                  className="mr-2"
+                  className="mr-2 bg-customPurple text-white"
                 >
                   Edit
                 </Button>
