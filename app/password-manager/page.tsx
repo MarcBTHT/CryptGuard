@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
-import {Input} from "@nextui-org/input";
-import {Card, CardHeader, CardBody, Image, Button} from "@nextui-org/react";
+import { Input } from "@nextui-org/input";
+import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 
 interface Password {
   id: number;
@@ -63,7 +63,7 @@ export default function PasswordManager() {
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Password Manager</h2>
-       <Card className="w-full">
+      <Card className="w-full">
         <CardBody className="mt-4" >
           <Input
             fullWidth
@@ -97,10 +97,10 @@ export default function PasswordManager() {
       </Card>
 
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-6">Liste des comptes</h2>
+        <h2 className="text-2xl font-bold mb-6">Accounts list</h2>
         {passwords.map((password: Password) => (
           <Card key={password.id} className="mb-4">
-            <CardBody className="flex justify-between items-center">
+            <CardBody className="flex flex-col md:flex-row md:justify-between md:items-center">
               <div>
                 <p>
                   <strong>Service:</strong> {password.service}
@@ -109,7 +109,7 @@ export default function PasswordManager() {
                   <strong>Username:</strong> {password.username}
                 </p>
               </div>
-              <div>
+              <div className="mt-4 md:mt-0 md:text-right">
                 <Button
                   onClick={() =>
                     handleEditPassword(
@@ -120,6 +120,7 @@ export default function PasswordManager() {
                     )
                   }
                   color="warning"
+                  size="md"
                   className="mr-2"
                 >
                   Edit
@@ -127,7 +128,7 @@ export default function PasswordManager() {
                 <Button
                   onClick={() => handleDeletePassword(password.id)}
                   color="danger"
-                  className="py-1"
+                  size="md"
                 >
                   Delete
                 </Button>
