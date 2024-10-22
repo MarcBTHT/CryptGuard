@@ -3,6 +3,8 @@
 
 Cette application est un gestionnaire de mots de passe simple, permettant aux utilisateurs d'ajouter, modifier et supprimer des mots de passe pour différents services. Les mots de passe sont chiffrés avant d'être stockés dans une base de données PostgreSQL.
 
+https://github.com/user-attachments/assets/d79fdb2f-5fd5-4e0d-84e0-f4c4c5d1da7d
+
 ## Technologies utilisées
 
 - **Next.js** : Framework React utilisé pour la partie front-end et les routes API.
@@ -23,52 +25,60 @@ Cette application est un gestionnaire de mots de passe simple, permettant aux ut
 
 ### Prérequis
 
-- **Node.js** : Assurez-vous d'avoir Node.js installé sur votre machine. Vous pouvez télécharger Node.js [ici](https://nodejs.org/).
 - **Docker** : Assurez-vous d'avoir Docker installé et configuré. Vous pouvez télécharger Docker [ici](https://www.docker.com/products/docker-desktop).
-
-### Installation des dépendances
-
-1. Clonez le dépôt :
-   \`\`\`bash
-   git clone <URL_DU_DEPOT>
-   cd password-manager
-   \`\`\`
-
-2. Installez les dépendances Node.js :
-   \`\`\`bash
-   npm install
-   \`\`\`
-
-3. Installez Prisma :
-   \`\`\`bash
-   npx prisma generate
-   \`\`\`
-
-### Configuration de l'environnement
-
-1. Créez un fichier `.env` à la racine du projet et ajoutez la configuration de la base de données PostgreSQL :
-   \`\`\`
-   DATABASE_URL="postgresql://postgres:password@localhost:5432/mydatabase"
-   \`\`\`
 
 ### Lancer l'application avec Docker
 
-1. **Démarrer PostgreSQL** avec Docker :
-   \`\`\`bash
-   docker run --name bdd_test -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
-   \`\`\`
+1. **Cloner le dépôt** :
+   `git clone <URL_DU_DEPOT>`
+   `cd CryptGuard`
 
-2. **Lancer les migrations Prisma** pour initialiser la base de données :
-   \`\`\`bash
-   npx prisma migrate dev --name init
-   \`\`\`
+2. **Lancer les services avec Docker Compose** :
+   `docker-compose up --build`
 
-3. **Lancer l'application** :
-   \`\`\`bash
-   npm run dev
-   \`\`\`
+   Cela démarre à la fois l'application **Next.js** et la base de données **PostgreSQL** dans des conteneurs séparés.
 
-4. Accédez à l'application dans votre navigateur à l'adresse : `http://localhost:3000`.
+3. Accédez à l'application dans votre navigateur à l'adresse : `http://localhost:3000`.
+
+4. **Arrêter les services** :
+   Pour arrêter tous les services, exécutez :
+   `docker-compose down`
+
+### Installation manuelle (sans Docker)
+
+Si vous préférez ne pas utiliser Docker, suivez les étapes ci-dessous pour installer et exécuter l'application manuellement :
+
+#### Prérequis
+
+- **Node.js** : Assurez-vous d'avoir Node.js installé sur votre machine. Vous pouvez télécharger Node.js [ici](https://nodejs.org/).
+
+#### Installation des dépendances
+
+1. Clonez le dépôt :
+   `git clone <URL_DU_DEPOT>`
+   `cd CryptGuard`
+
+2. Installez les dépendances Node.js :
+   `npm install`
+
+3. Installez Prisma :
+   `npx prisma generate`
+
+#### Configuration de l'environnement
+
+1. Créez un fichier `.env` à la racine du projet et ajoutez la configuration de la base de données PostgreSQL :
+   `DATABASE_URL="postgresql://postgres:password@localhost:5432/mydatabase"`
+
+2. **Démarrer PostgreSQL** avec Docker :
+  `docker run --name bdd_test -e POSTGRES_PASSWORD=password -p 5432:5432 postgres`
+
+3. **Lancer les migrations Prisma** pour initialiser la base de données :
+   `npx prisma migrate dev --name init`
+
+4. **Lancer l'application** :
+   `npm run dev`
+
+5. Accédez à l'application dans votre navigateur à l'adresse : `http://localhost:3000`.
 
 ### Fonctionnalités API
 
@@ -87,6 +97,4 @@ Les mots de passe sont chiffrés avant d'être stockés dans la base de données
 
 - **Sécurité** : L'application utilise `bcryptjs` pour assurer la sécurité des mots de passe. Cependant, assurez-vous que votre fichier `.env` (contenant les informations de connexion à la base de données) est correctement sécurisé.
 - **Gestion des erreurs** : Assurez-vous que le conteneur PostgreSQL est bien lancé avant de démarrer l'application. Vous pouvez vérifier l'état du conteneur avec la commande :
-  \`\`\`bash
-  docker ps
-  \`\`\`
+   docker ps
