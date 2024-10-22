@@ -28,15 +28,14 @@ export default function Home() {
 
       <div className="flex gap-3">
         <Link
-          isExternal
           className={buttonStyles({
             color: "primary",
             radius: "full",
             variant: "shadow",
           })}
-          href={siteConfig.links.docs}
+          href="/password-manager"
         >
-          Launch
+          Manage
         </Link>
         <Link
           isExternal
