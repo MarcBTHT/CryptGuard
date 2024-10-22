@@ -1,3 +1,4 @@
+"use client"
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -11,6 +12,7 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
+import { Dropdown, DropdownItem, DropdownTrigger, DropdownMenu } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -54,7 +56,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">CryptGuard</p>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -91,18 +93,27 @@ export const Navbar = () => {
           </Link>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
-            variant="flat"
-          >
-            Sponsor
-          </Button>
+        <NavbarItem className="hidden lg:flex">
+          <Dropdown
+            showArrow
+            classNames={{
+              base: "before:bg-default-200",
+              content: "py-1 px-1 border border-default-200 bg-black bg-opacity-30",
+            }}>
+            <DropdownTrigger>
+              <Button variant="bordered" size='md' className="text-default-500 text-base border-white mr-4">
+                Enroll Now
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Login menu">
+              <DropdownItem key="sign-in" href="/" className='text-white'>
+                Sign In
+              </DropdownItem>
+              <DropdownItem key="sign-up" href="/" className='text-white'>
+                Sign Up
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </NavbarItem>
       </NavbarContent>
 

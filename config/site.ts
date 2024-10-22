@@ -5,10 +5,6 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "Docs",
       href: "/docs",
     },
@@ -60,10 +56,10 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
+    github: "https://github.com/MarcBTHT/CryptGuard",
+    twitter: "https://twitter.com/",
     docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    discord: "https://discord.gg/",
+    // sponsor: "https://patreon.com/",
   },
 };
