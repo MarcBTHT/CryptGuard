@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
+import {Input} from "@nextui-org/input";
+import {Card, CardHeader, CardBody, Image, Button} from "@nextui-org/react";
+
 interface Password {
   id: number;
   service: string;
@@ -59,59 +62,80 @@ export default function PasswordManager() {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Password Manager</h1>
+      <Card className="mx-auto max-w-lg">
+        <CardHeader className="pb-4">
+          <h1 className="text-2xl font-bold">Password Manager</h1>
+        </CardHeader>
+        <CardBody>
+          <Input
+            fullWidth
+            label="Service"
+            placeholder="Amazon"
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            className="mb-4"
+          />
+          <Input
+            fullWidth
+            label="Username"
+            placeholder="Michelle24"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="mb-4"
+          />
+          <Input
+            fullWidth
+            type="password"
+            label="Password"
+            placeholder="azerty123#"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mb-4"
+          />
+          <Button onClick={handleAddPassword} className="mb-4">
+            {editId ? "Update Password" : "Add Password"}
+          </Button>
+        </CardBody>
+      </Card>
 
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Service"
-          value={service}
-          onChange={(e) => setService(e.target.value)}
-          className="border p-2 mr-2"
-        />
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border p-2 mr-2"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 mr-2"
-        />
-        <button onClick={handleAddPassword} className="bg-blue-500 text-white p-2">
-          {editId ? "Update Password" : "Add Password"}
-        </button>
-      </div>
-
-      <ul>
+      <div className="mt-6">
         {passwords.map((password: Password) => (
-          <li key={password.id} className="mb-4 flex justify-between items-center">
-            <div>
-              <p><strong>Service:</strong> {password.service}</p>
-              <p><strong>Username:</strong> {password.username}</p>
-            </div>
-            <div>
-              <button
-                onClick={() => handleEditPassword(password.id, password.service, password.username, password.password)}
-                className="bg-yellow-500 text-white p-2 mr-2"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDeletePassword(password.id)}
-                className="bg-red-500 text-white p-2"
-              >
-                Delete
-              </button>
-            </div>
-          </li>
+          <Card key={password.id} className="mb-4">
+            <CardBody className="flex justify-between items-center">
+              <div>
+                <p>
+                  <strong>Service:</strong> {password.service}
+                </p>
+                <p>
+                  <strong>Username:</strong> {password.username}
+                </p>
+              </div>
+              <div>
+                <Button
+                  onClick={() =>
+                    handleEditPassword(
+                      password.id,
+                      password.service,
+                      password.username,
+                      password.password
+                    )
+                  }
+                  color="warning"
+                  className="mr-2"
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => handleDeletePassword(password.id)}
+                  color="danger"
+                >
+                  Delete
+                </Button>
+              </div>
+            </CardBody>
+          </Card>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
