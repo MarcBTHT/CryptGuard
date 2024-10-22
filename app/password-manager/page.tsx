@@ -62,11 +62,9 @@ export default function PasswordManager() {
 
   return (
     <div className="container mx-auto p-6">
-      <Card className="mx-auto max-w-lg">
-        <CardHeader className="pb-4">
-          <h1 className="text-2xl font-bold">Password Manager</h1>
-        </CardHeader>
-        <CardBody>
+      <h2 className="text-2xl font-bold mb-6">Password Manager</h2>
+       <Card className="w-full">
+        <CardBody className="mt-4" >
           <Input
             fullWidth
             label="Service"
@@ -98,7 +96,8 @@ export default function PasswordManager() {
         </CardBody>
       </Card>
 
-      <div className="mt-6">
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold mb-6">Liste des comptes</h2>
         {passwords.map((password: Password) => (
           <Card key={password.id} className="mb-4">
             <CardBody className="flex justify-between items-center">
@@ -128,6 +127,7 @@ export default function PasswordManager() {
                 <Button
                   onClick={() => handleDeletePassword(password.id)}
                   color="danger"
+                  className="py-1"
                 >
                   Delete
                 </Button>
