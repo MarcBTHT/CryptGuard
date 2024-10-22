@@ -7,10 +7,14 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
+      {/* <div className="inline-block max-w-xl text-center justify-center">
         <span className={title()}>Make&nbsp;</span>
         <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
         <br />
@@ -20,7 +24,7 @@ export default function Home() {
         <div className={subtitle({ class: "mt-4" })}>
           Beautiful, fast and modern React UI library.
         </div>
-      </div>
+      </div> */}
 
       <div className="flex gap-3">
         <Link
@@ -32,7 +36,7 @@ export default function Home() {
           })}
           href={siteConfig.links.docs}
         >
-          Documentation
+          Launch
         </Link>
         <Link
           isExternal
@@ -42,14 +46,6 @@ export default function Home() {
           <GithubIcon size={20} />
           GitHub
         </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
       </div>
     </section>
   );
